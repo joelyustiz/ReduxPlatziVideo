@@ -1,0 +1,8 @@
+.Video {
+  width: inherit;
+}
+.Video video {
+  width: inherit;
+  vertical-align: middle;
+}
+/* Propiedades que heredan el ancho y el alto del componente padre */

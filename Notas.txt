@@ -1,0 +1,165 @@
+classMiComponenteextendsComponents{
+
+	constructor(){
+	// Enlazo (bind) eventos y/o inicializo estado
+	}
+	componentWillMount(){
+	// Se ejecuta antes de montar el componente
+	// Se podría usar para hacer un setState()
+		1. puedes hacer un setState
+		2. No hagas llamados a un API o suscripcion de evenntos
+	}
+	render(){
+	// Contiene todos los elementos a renderizar
+	// podrías usarlo para calcular propiedades (ej: concatenar una cadena)
+	}
+	componentDidMount(){
+	//Solo se lanza una vez
+	//Ideal para llamar a una API, hacer un setInteval, etc
+	}
+
+	//Actualización:
+	componentWillReceiveProps(){
+	//Es llamado cuando el componente recibe nuevas propiedades.
+
+	}
+	shouldComponentUpdate(){
+	//Idea para poner una condición y  si las propiedades que le llegaron anteriormente
+	// eran las mismas que tenia retornar false para evitar re-renderear el componente
+	}
+	componentWillUpdate(){
+	//metodo llamado antes de re-renderizar el componente si shouldComponentUpdate devolvió true
+	}
+
+	// re-render si es necesario...
+
+	componentDidUpdate(){
+	//Método llamado luego del re-render
+	}
+	componentWillUnmount(){
+	//Método llamado antes de desmontar el componente
+	}
+	componentDidCatch(){
+	// Si ocurre algún error, lo capturo desde acá:
+	}
+
+}
+
+Presentacional Cómo se ve
+
+-Puede contener smart components u otros componentes de UI
+-Permiten composición con `[props.children]``
+-No depeden del resto de la aplicación
+-No especifica cómo los datos son cargados o mutados
+-Recibe datos y callbacks solo con propiedades
+-Rara vez tienen su propio estado
+-Están escritos como componentes funcionales a menos que necesiten mejoras de performance. 
+		Sólo pueden ser Componentes funcionales o Pure Components
+
+
+Containers Qué hace
+
+Concetrado en el funcionamiento de la aplicación
+Contienen componentes de UI u otros containers
+No tienen estilos
+Proveen de datos a componentes de UI u otros contenedores
+Proveen de callbacks a la UI
+Normalmente tienen estado
+Llaman acciones
+Generados por higher order components
+
+/////// Coposicion de Componentes
+
+
+**Referencias **
+
+Las referencias nos permite alamacenar en react un elemento HTML
+
+value // No permite editar el input al menos que se envie el valor mediante props.
+defaultValue // permite editar el input
+
+Al asignar valor a la propiedad value de un elemento input,
+ se está definiendo como valor inmutable, y el input se vuelve un 
+ elemento de sólo lectura … como una constante.
+
+Para permitir la mutabilidad del valor, se debe asignar mediante la 
+propiedad defaultValue en lugar de value.
+
+En cualquiera de los dos casos anteriores, se debería también definir 
+la propiedad (evento) onChange del input para poder manipular posteriormente su valor, y/o disparar
+ el update (re-renderizado) del componente.
+
+
+       Redux
+
+Store: Es el centro y la verdad de todo, con métodos para actualizar, obtener y escuchar datos.
+Actions: Son bloques de información que envian datos desde la aplicación hacia el store.
+Reducers: Cambian el estado de la aplicación.
+
+
+Store = Es la parte más importante de entender cuando estamos haciendo algo en Redux.
+
+Datos importantes del Store:
+
+Contiene el estado de la aplicación.
+Se puede acceder al estado con el método getState()
+Se puede actualizar el estado con el método dispatch(action)
+Escucha cambios con el método **subscribe(listener)
+Deja de escuchar cambios retornando la función del método subscribe(listener)
+
+Action = Bloque de información que envía datos a la aplicación.
+
+Datos importantes:
+
+Se envían usando el método dispatch() del store.
+Son la única fuente de información del store.
+Son objetos planos de JavaScript.
+
+Reducer = Modifica el estado.
+
+Datos importantes:
+
+Es una función pura.
+Puede haber más de un reducer en una aplicación pero solo debe haber un store.
+Devuelve el siguiente estado.
+¿Qué es una función pura?
+
+“Dados los mismos parámetros/argumentos/entradas deben retornar 
+el mismo resultado, sin importar el número de veces que se llame”
+
+Reducer
+
+Modifican nuestro estado
+Puede haber múltiples reducers en la aplicación y un solo store.
+Devuelve el siguiente estado.
+Que no deben hacer
+
+Modificar los argumentos recibidos
+Llamar a APIs (u otras tareas secundarias)
+Llamar a funciones no puras como Date.now(), Math.random()
+<h1>Funciones puras</h1>
+Es un concepto de programación funcional, hace que el código sea más legible. 
+Tienen las siguientes condiciones:
+Dados los mismos datos de entrada, deben retornar el mismo resultado sin 
+importar el número de veces que se llame.
+No debe tener objetos secundarios.
+El reducer se iguala a una función, esta función recibe dos parámetros que 
+son el state y la action y en la función 
+se debe definir que se hace con state y action; generalmente se valida con un switch.
+
+
+Resume del flujo de eventos
+
+Se establece un State (estado) inicial con el que se crea originalmente el store mediante el
+ método createStore de redux
+el state inicial define los contenidos que se muestran en la UI mediante 
+store.getState() y la función render()
+mediante los elementos de la UI se dispara un evento que se captura mediante 
+un listener (como onsubmit) y que invoca al store.dispatch() con una acción específica …
+el Reducer recibe la acción(type y payload) enviada mediante el store.dispatch() y
+ genera un nuevo estado que remplazará al estado inicial (o anterior)
+el cambio del estado es detectado por el store y se ejecuta store.subscribe(handle) … 
+con la función (handle) que manejará lo que sucede cuando ha cambiado el estado
+en la función (handle) recibida por store.subscribe(handle) se invoca la actualización 
+de la UI a partir del nuevo estado creado
+queda establecido el nuevo estado(state) y queda de nuevo atento el evento (listener) en la UI
