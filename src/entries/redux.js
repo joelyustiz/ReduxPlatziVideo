@@ -15,6 +15,7 @@ function handleSubmit(event) {
         }
     })
 }
+
 const initialState = [
     {
         "title":"Despacito",
@@ -44,8 +45,9 @@ const store = createStore(
     reducer,
     initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
-  )
+  )//creacionn del store
   
+
   function render() {
     const $container = document.getElementById('playlist')
     const playlist = store.getState()

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import HomeLayout from '../components/home-layout'
 import Categories from '../../categories/components/categories'
 import Related from '../components/related'
@@ -6,7 +6,8 @@ import ModalContainer from '../../widgets/containers/modal'
 import Modal from '../../widgets/components/modal'
 import HandleError from '../../error/containers/handle-error'
 import VideoPlayer from '../../player/containers/video-player'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+
 class Home extends Component {
 
     state = {
@@ -37,6 +38,7 @@ class Home extends Component {
                     <Categories 
                         categories={this.props.categories}
                         handleOpenModal = {this.handleOpenModal}
+                        search={this.props.search}
                     />
                     {
                         this.state.modalVisible && //if condicional solo ve true o false
@@ -61,6 +63,7 @@ class Home extends Component {
 function mapStateToProps(state, props) {
     return {
         categories: state.data.categories,
+        search: state.search,
     }
     
 }
