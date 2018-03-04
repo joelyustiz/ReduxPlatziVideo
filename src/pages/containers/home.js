@@ -8,6 +8,8 @@ import HandleError from '../../error/containers/handle-error'
 import VideoPlayer from '../../player/containers/video-player'
 import { connect } from 'react-redux'
 import { List as list } from 'immutable'
+import { openModal, closeModal } from '../../actions/index'
+
 class Home extends Component {
 
    /*  state = {
@@ -19,22 +21,14 @@ class Home extends Component {
         //     modalVisible: true,
         //     media,// si la propiedad se llama igual que la key solo lo declaras una vez
         // })
-        this.props.dispatch({
-            type: 'OPEN_MODAL',
-            payload:{
-                mediaId: id
-            }
-           
-        })
+        this.props.dispatch(openModal(id))
     }
 
     handleCloseModal = (event) =>{
         // this.setState({
         //     modalVisible: false,
         // })
-        this.props.dispatch({
-            type: 'CLOSE_MODAL'
-        })
+        this.props.dispatch(closeModal())
     }
 
     render() {
@@ -74,7 +68,7 @@ function mapStateToProps(state, props) {
     const categories = state.get('data').get('categories').map((categoryId)=>{
         return state.get('data').get('entities').get('categories').get(categoryId)
     })
-    
+
     let searchResults = list()//los array son listas y los objetos son mapas
     const search = state.get('data').get('search')
 
