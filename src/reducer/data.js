@@ -5,7 +5,7 @@ const initialState = fromJS({
             // ...data
             entities: schema .entities,
             categories: schema .result.categories,
-            search:[], 
+            search:'', 
 })
 
 function data(state = initialState, action) {
@@ -16,19 +16,16 @@ function data(state = initialState, action) {
            // const results = list.filter((item)=>{
             //     return item.author.includes(action.payload.query)
             // })
-            let results = []
+           /*  let results = []
             if (action.payload.query) {
                 state.data.categories.map((item)=>{
                     return  item.playlist.filter((item)=>{
                                 return item.author.toLowerCase().includes(action.payload.query.toLowerCase()) && results.push(item) 
                     })
                 })
-            }
+            } */
             
-            return {
-                ...state,
-                search: results,
-            }
+            return state.set('search', action.payload.query)
         }
             
             break;

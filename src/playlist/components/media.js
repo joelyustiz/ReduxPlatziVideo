@@ -12,7 +12,7 @@ class Media extends PureComponent{
         } */
 
         handleClick = (event) =>{
-          this.props.openModal(this.props)
+          this.props.openModal(this.props.id)
         }
     render(){
        /*  const styles = {
