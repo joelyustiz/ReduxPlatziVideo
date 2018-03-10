@@ -8,6 +8,10 @@ function Categories(props) {
         <div className = "Categories">
             <Search />
             {
+                props.isLoading &&
+                <p>Buscando Videos</p>
+            }
+            {
                 props.search.map((item)=>{
                     return <Media  
                                 title  = {item.get('title')}

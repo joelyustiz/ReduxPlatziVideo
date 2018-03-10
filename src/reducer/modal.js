@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable'
 import { OPEN_MODAL, CLOSE_MODAL} from '../actions-type/index'
+
 const initialState = fromJS({
         visibility: false,
         mediaId: null

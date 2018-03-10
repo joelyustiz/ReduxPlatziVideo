@@ -1,10 +1,11 @@
 import schema from '../schemas/index'
 import { fromJS } from 'immutable'
 import { SEARCH_ENTITIES } from '../actions-type/index'
+
 const initialState = fromJS({
             // ...data
-            entities: schema .entities,
-            categories: schema .result.categories,
+            entities: schema.entities,
+            categories: schema.result.categories,
             search:'', 
 })
 
@@ -27,11 +28,10 @@ function data(state = initialState, action) {
             
             return state.set('search', action.payload.query)
         }
-            
             break;
     
         default:
-        return state
+            return state
             break;
     }
 }
